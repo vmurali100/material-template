@@ -16,6 +16,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import { red } from "@material-ui/core/colors";
+import Drawercomp from "./drawer";
 const drawerWidth = 240;
 const styles = theme => ({
   root: {
@@ -87,74 +88,9 @@ class ClippedDrawer extends Component {
             </Button>
           </Toolbar>
         </AppBar>
-        {!this.state.isExist && (
-          <Drawer
-            className={this.props.classes.drawer}
-            variant="permanent"
-            classes={{
-              paper: this.props.classes.drawerPaper1
-            }}
-          >
-            <div className={this.props.classes.toolbar} />
-            <List>
-              {["Inbox", "Starred", "Send email", "Drafts"].map(
-                (text, index) => (
-                  <ListItem button key={text}>
-                    <ListItemIcon>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItem>
-                )
-              )}
-            </List>
-            <Divider />
-            <List>
-              {["All mail", "Trash", "Spam"].map((text, index) => (
-                <ListItem button key={text}>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItem>
-              ))}
-            </List>
-          </Drawer>
-        )}
-        {this.state.isExist && (
-          <Drawer
-            className={this.props.classes.drawer}
-            variant="permanent"
-            classes={{
-              paper: this.props.classes.drawerPaper
-            }}
-          >
-            <div className={this.props.classes.toolbar} />
-            <List>
-              {["Inbox", "Starred", "Send email", "Drafts"].map(
-                (text, index) => (
-                  <ListItem button key={text}>
-                    <ListItemIcon>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItem>
-                )
-              )}
-            </List>
-            <Divider />
-            <List>
-              {["All mail", "Trash", "Spam"].map((text, index) => (
-                <ListItem button key={text}>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItem>
-              ))}
-            </List>
-          </Drawer>
-        )}
+
+        <Drawercomp {...this.props} isExist={this.state.isExist} />
+
         <main className={this.props.classes.content}>
           <div className={this.props.classes.toolbar} />
           <Typography paragraph>
